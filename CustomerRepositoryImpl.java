@@ -1,3 +1,4 @@
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -5,6 +6,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 public class CustomerRepositoryImpl implements ICustomerRepository {
+
 	EntityManager manager;
 	public CustomerRepositoryImpl() {
 		EntityManagerFactory f = Persistence.createEntityManagerFactory("JPA-PU");
@@ -15,7 +17,7 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 	public Customer addCustomer(Customer customer)throws CustomerNotFoundException {
 		// TODO Auto-generated method stub
 		manager.getTransaction().begin();
-		manager.persist(customer);
+		manager.merge(customer);
 		manager.getTransaction().commit();
 		return customer;
 	}
@@ -34,24 +36,27 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 		// TODO Auto-generated method stub
 		manager.getTransaction().begin();
 		customer=manager.find(Customer.class, customer);
-		manager.remove(customer);
+		manager.contains(customer);
 		manager.getTransaction().commit();
 		return customer;
 	}
 	@Override
-	public Customer viewCustomer(int customerId)throws CustomerNotFoundException{
+	public Customer viewCustomer(Customer customerId)throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
-		Customer customerobj1=manager.find(Customer.class, customerId);
-		return customerobj1;
+		manager.getTransaction().begin();
+		customerId=manager.find(Customer.class, customerId);
+		manager.contains(customerId);
+		manager.getTransaction().commit();
+		return customerId;
 	}
 
 	@Override
 	public List<Customer> viewAllCustomers(int PackageId)throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
-		/*TypedQuery<Customer> query=manager.createQuery("select customer from Customer customer where customer.PackageId=:name",Customer.class);
+		TypedQuery<Customer> query=manager.createQuery("select customer from Customer customer where customer.PackageId=:name",Customer.class);
 		query.setParameter("name",PackageId);
-		List<Customer> list=query.getResultList();*/
-		return manager.createQuery("from Customer").getResultList();
+		List<Customer> list=query.getResultList();
+		return list;
 	}
 	@Override
 	public List<Customer> viewCustomerList(int RouteId)throws CustomerNotFoundException{
@@ -62,3 +67,5 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 		return list;
 	}
 }
+
+

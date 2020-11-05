@@ -1,119 +1,141 @@
 import java.util.List;
-import java.util.Scanner;
-import java.lang.*;
-import javax.lang.model.element.NestingKind;
-import org.hibernate.*;
-import org.hibernate.annotations.*;
-public class Main {
-	public static void main(String[] args) throws PackageNotFoundException {
-				IPackageService pse=new IPackageServiceImpl();
-	
-		Package pobj=new Package();
-		Scanner sc=new Scanner(System.in);
+		import java.util.Scanner;
 		
-		System.out.println();
-		System.out.println("Select the option:");
-		System.out.println("1.Adding");
-		System.out.println("2.Search");
-		System.out.println("3.Delete");
-		System.out.println("4.ViewAll");
-		//accept an option
-		try {
-			int n=sc.nextInt();
-			switch(n) {
-		
-		case 1:
-			try {
-				System.out.println("Enter Package Id:");
-				int packageId=sc.nextInt();
-				System.out.println("Enter Package Name:");
-				String packageName= sc.next();
-				System.out.println("Enter Package Description:");
-				String packageDescription = sc.next();
-				System.out.println("Enter Package Type:");
-				String packageType=sc.next();
-				System.out.println("Enter Package Cost:");
-				double packageCost=sc.nextDouble();
-		
-				pobj.setPackageId(packageId);
-				pobj.setPackageName(packageName);
-				pobj.setPackageType(packageType);
-				pobj.setPackageDescription(packageDescription);
-				pobj.setPackageCost(packageCost);
-		
-				Package pack=pse.addPackage(pobj);
-				System.out.println(pack.getPackageId());	
-				System.out.println(pack.getPackageName());
-				System.out.println(pack.getPackageType());	
-				System.out.println(pack.getPackageDescription());
-				System.out.println(pack.getPackageCost());
-			}
-			catch (PackageNotFoundException pe) {
-				// TODO: handle exception
-				System.out.println("ERROR:" +pe.getMessage());
-			}
-			catch (Exception exp) {
-				// TODO: handle exception
-				System.out.println(exp.getMessage());
-			}
-			break;
-		
-		case 2:
-			try {
-				System.out.println("Enter packageId to search");
-				int packageId1=sc.nextInt();	
-				pobj.setPackageId(packageId1);
+		public class Main {
+					public static void main(String[] args) {
+						// TODO Auto-generated method stub
+						ICustomerService serviceobj= new CustomerServiceImpl();
+					Customer customerobj = new Customer();
+						Scanner sc = new Scanner(System.in);
+						System.out.println("Select the option which you want:-");
+						
+						System.out.println("1.Adding");
+						System.out.println("2.Update");
+						System.out.println("3.Delete");
+						System.out.println("4.address");
+						System.out.println("5.view");
+						System.out.println("6.viewAll");
+						System.out.println("7.viewList");
+						int n = sc.nextInt();
+						
+					 switch(n) {
+						case 1: System.out.println("Enter the customerId");
+						        int customerId = sc.nextInt();
+						        System.out.println("Enter the customerName");
+						        String customerName = sc.next();
+						        System.out.println("Enter the customerPassword");
+						        String customerPassword = sc.next();
+						        System.out.println("Enter the address");
+						        String address = sc.next();
+						        System.out.println("Enter the mobileNo");
+						        String mobileNo = sc.next();
+						        System.out.println("Enter the email");
+						        String email = sc.next();
+						        
+						  customerobj.setCustomerId(customerId);       
+						  customerobj.setCustomerName(customerName);
+						  customerobj.setCustomerPassword(customerPassword);
+						  customerobj.setAddress(address);       
+						  customerobj.setMobileNo(mobileNo);
+						  customerobj.setEmail(email);
+						  
+						  
+						  Customer Customer1 = serviceobj.addCustomer(customerobj);
+						  System.out.println(Customer1.getCustomerId());
+						  System.out.println(Customer1.getCustomerName());
+						  System.out.println(Customer1.getCustomerPassword());
+						  System.out.println(Customer1.getAddress());
+						  System.out.println(Customer1.getMobileNo());
+						  System.out.println(Customer1.getEmail());
+						  
+					      System.out.println("added successfully");
+					      
+					  break;
+						case 2: System.out.println("Enter the CustomerId");
+						        int customerId1 = sc.nextInt();
+						        customerobj.setCustomerId(customerId1);
+						        System.out.println("Enter the CustomerName");
+						        String customerName1 = sc.next();
+						        customerobj.setCustomerName(customerName1);
+						        System.out.println("Enter the CustomerPassword");
+						        String customerpassword1 = sc.next();
+						        customerobj.setCustomerPassword(customerpassword1);
+						        System.out.println("Enter the address");
+						        String Address1 = sc.next();
+						        customerobj.setAddress(Address1);
+						        System.out.println("Enter the mobileNo");
+						        String MobileNo1 = sc.next();
+						        customerobj.setMobileNo(MobileNo1);
+						        System.out.println("Enter the email");
+						        String Email1 = sc.next();
+						        customerobj.setEmail(Email1);
+						        
+						 Customer customer2 = serviceobj.updateCustomer(customerobj);
+						  System.out.println(customer2.getCustomerId());
+						  System.out.println(customer2.getCustomerName());
+						  System.out.println(customer2.getCustomerPassword());
+						  System.out.println(customer2.getAddress());
+						  System.out.println(customer2.getMobileNo());
+						  System.out.println(customer2.getEmail());
+					      System.out.println("updated successfully");
+					      
+					 break;
+						case 3: System.out.println("Enter the customer id to delete");
+						       int customerId2 =sc.nextInt();
+						        customerobj.setCustomerId(customerId2);
+						        serviceobj.deleteCustomer(customerobj);
+						        System.out.println("Record Deleted");
+    
+				     break;
+						case 4: System.out.println("Enter the customerId");
+				               int customerId3 = sc.nextInt();
+				                customerobj.setCustomerId(customerId3);
+				                System.out.println("Enter the customerName");
+				                String customerName3 = sc.next();
+				                customerobj.setCustomerName(customerName3);
+				                System.out.println("Enter the password");
+				                String CustomerPassword3 = sc.next();
+				                customerobj.setCustomerPassword(CustomerPassword3);
+				                System.out.println("Enter the address");
+						        String Address3 = sc.next();
+						        customerobj.setAddress(Address3);
+						        System.out.println("Enter the mobileNo");
+						        String MobileNo3 = sc.next();
+						        customerobj.setCustomerName(MobileNo3);
+						        System.out.println("Enter the email");
+						        String Email3 = sc.next();
+						        customerobj.setCustomerName(Email3);
+				        
+				      Customer customer3 = serviceobj.viewCustomer(customerobj);
+				       System.out.println(customer3.getCustomerId());
+				       System.out.println(customer3.getCustomerName());
+				       System.out.println(customer3.getCustomerPassword());
+				       System.out.println(customer3.getAddress());
+					   System.out.println(customer3.getMobileNo());
+					   System.out.println(customer3.getEmail());
+				       System.out.println("view successfully");
+			      
+				     break;
 				
-				Package pack1=pse.searchPackage(packageId1);
-				System.out.println(pack1.getPackageId());
-				System.out.println(pack1.getPackageName());
-				System.out.println(pack1.getPackageDescription());
-				System.out.println(pack1.getPackageType());
-				System.out.println(pack1.getPackageCost());
-				System.out.println("The data retrived succesfully");
-			}
-			catch (PackageNotFoundException pne) {
-				// TODO: handle exception
-				System.out.println("ERROR:" +pne.getMessage());
-			}
-			catch (Exception exc) {
-				// TODO: handle exception
-				System.out.println(exc.getMessage());
-			}
-			break;
 			
-		case 3:
-			try {
-				System.out.println("Enter Package Id to delete:");
-				int packageId2=sc.nextInt();
-				pobj.setPackageId(packageId2);
-				//packageId=packageId2;
-				pse.deletePackage(packageId2);
-				System.out.println("Record Deleted");
+						case 5:	
+							System.out.println("Enter PackageId to view");
+							int PackageId=sc.nextInt();
+							List<Customer> i=serviceobj.viewAllCustomers(PackageId);
+						for (Customer customer1 : i) {
+							System.out.println(customer1);	
+						}
+							break;
+						case 6:
+							System.out.println("Enter RouteId to viewlist");
+							int RouteId=sc.nextInt();
+						List<Customer> customerobjList1=serviceobj.viewCustomerList(RouteId);
+						for (Customer customer1 : customerobjList1) {
+							System.out.println(customer1);	
+						}
+						System.out.println(customerobj);
+						  break;
+							 }
+				 }
 			}
-			catch (PackageNotFoundException pnfe) {
-				// TODO: handle exception
-				System.out.println("ERROR:"+pnfe.getMessage());
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				System.out.println(e.getMessage());
-			}
-			break;
-		case 4:
 		
-				List<Package> packList=pse.viewAllPackages();
-				for (Package p: packList) {
-					System.out.println(p);		
-				}
-				break;
-		}
-		}
-		finally {
-			// TODO: handle finally clause
-			System.out.println();
-		}
-		
-		sc.close();
-	}
-}

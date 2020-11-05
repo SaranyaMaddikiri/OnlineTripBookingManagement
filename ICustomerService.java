@@ -8,7 +8,7 @@ public interface ICustomerService {
 		
 		public Customer deleteCustomer(Customer customer)throws CustomerNotFoundException;
 		
-		public Customer viewCustomer(int customerId)throws CustomerNotFoundException;
+		public Customer viewCustomer(Customer CustomerId)throws CustomerNotFoundException;
 		
 		public List <Customer> viewAllCustomers(int PackageId)throws CustomerNotFoundException;
 		

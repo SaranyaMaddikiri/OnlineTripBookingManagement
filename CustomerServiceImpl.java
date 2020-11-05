@@ -5,7 +5,6 @@ public class CustomerServiceImpl implements ICustomerService {
 	public CustomerServiceImpl() {
 		customerr = new CustomerRepositoryImpl();
 	}
-
 	@Override
 	public Customer addCustomer(Customer customer)throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
@@ -21,13 +20,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public Customer deleteCustomer(Customer customer)throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
+		
 		return customerr.deleteCustomer(customer);
+
 	}
 
 	@Override
-	public Customer viewCustomer(int customerId) throws CustomerNotFoundException{
+	public Customer viewCustomer(Customer CustomerId)throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
-		return customerr.viewCustomer(customerId);
+		return customerr.viewCustomer(CustomerId);
 	}
 
 	@Override
@@ -35,7 +36,6 @@ public class CustomerServiceImpl implements ICustomerService {
 		// TODO Auto-generated method stub
 		return customerr.viewAllCustomers(PackageId);
 	}
-
 
 	@Override
 	public List<Customer> viewCustomerList(int RouteId)throws CustomerNotFoundException{

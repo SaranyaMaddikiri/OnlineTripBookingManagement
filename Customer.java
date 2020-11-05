@@ -5,7 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="customer")
+@Table(name="customer_table")
 public class Customer {
 	
 @Id
@@ -57,6 +57,7 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
+@Override
 public String toString() {
 	return "Customer [CustomerId="+CustomerId+",CustomerName="+CustomerName+",CustomerPassword="+CustomerPassword+",address="+address+",mobileNo="+mobileNo+",email="+email+"]";
 }
