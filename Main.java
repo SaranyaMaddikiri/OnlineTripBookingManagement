@@ -18,7 +18,6 @@ public class Main {
 		System.out.println("3.Delete");
 		System.out.println("4.ViewAll");
 		//accept an option
-		do {
 		try {
 			int n=sc.nextInt();
 			switch(n) {
@@ -108,14 +107,13 @@ public class Main {
 					System.out.println(p);		
 				}
 				break;
-		default:
-				System.out.println("Select the valid number");
 		}
 		}
 		finally {
 			// TODO: handle finally clause
 			System.out.println();
 		}
-		}while(true);
+		
+		sc.close();
 	}
 }
